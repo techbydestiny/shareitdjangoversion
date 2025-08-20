@@ -1,0 +1,131 @@
+/* Navbar color scheme */
+.navbar {
+    background-color: #76593C;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .search-bar {
+    color: #FFFFFF;
+}
+
+.navbar .nav-link i {
+    font-size: 1.5rem;
+}
+
+.navbar .profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Hide search bar on mobile */
+@media (max-width: 991px) {
+    .navbar-brand .search-bar {
+        display: none;
+    }
+}
+.navbox{
+    border-radius: 100%;
+    margin-right: 20px;
+}
+.bright:hover
+{
+    filter: brightness(0.2);
+}
+
+.profile-card
+{
+    background-color: #76593C;;
+    width: 50%;
+    align-content: center;
+    align-self: center;
+
+}
+
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Space between buttons */
+    }
+
+    .button-container button {
+        flex: 1 1 calc(20% - 10px); /* Responsive width with gap adjustment */
+        min-width: 120px; /* Minimum width for smaller screens */
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .button-container button {
+            flex: 1 1 45%; /* Adjusts to 2 buttons per row on smaller screens */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .button-container button {
+            flex: 1 1 100%; /* Stacks buttons on very small screens */
+        }
+    }
+.link-action
+{
+    text-decoration: none;
+    color: whitesmoke;
+}
+.link-action:hover {
+    text-decoration: underline;
+}
+.btn-custom {
+    background-color: #91763B;
+}
+
+.btn-custom:hover {
+    background-color: #7b6531;
+}
+.body
+{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: brightness(0.8);
+}
+
+.archieve-card
+{
+    margin-top: none;
+    background-color: #76593C;;
+    width: 90%;
+    align-content: center;
+    align-self: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-custom2
+{
+    border-color: #91763B;
+}
+.justified
+{
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.messages
+{
+    overflow: scroll;
+    height: 500px;
+}
+.upload-button:hover .hover-overlay {
+    opacity: 1;
+}
+
+.upload-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
