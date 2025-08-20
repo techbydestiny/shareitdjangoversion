@@ -33,7 +33,7 @@
                     <!-- Other icons -->
                     <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Archieve"  href="/dashboard/archieve"><i class="fa-solid fa-box-archive bright"></i></a>
                     <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messages" href="/dashboard/messages"><i class="fab fa-facebook-messenger bright"></i></a>
-                    <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messages" href="/dashboard/">
+                    <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile" href="/dashboard/">
                         {% if profile.profile_pic %}
                             <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile" src="{{ profile.profile_pic.url }}" alt="Profile" class="profile-pic ms-2 bright">
                         {%else%}
@@ -70,6 +70,7 @@
                                 {% endif %}
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="New Username" name="username" aria-label="Email">
+                                     <input type="password" class="form-control" placeholder="New Username" name="password" aria-label="Password">
                                 </div>
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-custom">  Update Username <i class="fa-solid fa-forward"></i></button>
