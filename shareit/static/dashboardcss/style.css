@@ -167,9 +167,14 @@
     margin: auto;
 }
 
-/* Mobile: make it take 70% */
-@media (max-width: 768px) {
-    .profile-card {
-        width: 70% !important;
-    }
-}
+   @media (max-width: 768px) {
+            .profile-card {
+                width: 70% ;  
+                margin: auto;         
+            }
+        }
+        @media (max-width: 480px) {
+            .profile-card {
+                width: 90% ; 
+            }
+        }
