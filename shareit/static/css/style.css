@@ -20,7 +20,7 @@ body{ margin:0; }
 .navbar{ padding-top:.75rem; padding-bottom:.75rem; }
 .bg-transparent{ background-color: transparent !important; }
 .navbar-solid{
-  background-color: var(--brand-brown) !important;
+  background: rgba(0, 0, 0, 0.7);
   box-shadow: 0 8px 24px rgba(0,0,0,.15);
   backdrop-filter: saturate(140%) blur(6px);
 }

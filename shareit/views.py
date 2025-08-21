@@ -39,6 +39,8 @@ def home(request):
     return render(request, 'index.html')
 
 def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')  
     message = request.GET.get("msg")
     if request.method == "POST":
         username = request.POST.get("username")
@@ -56,6 +58,8 @@ def loginPage(request):
     return render(request, "login.html", {"message": message})
 
 def signUp(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')  
     if request.method == "POST":
         name = request.POST.get("username")
         email = request.POST.get("uemail").lower()

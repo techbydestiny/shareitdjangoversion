@@ -10,26 +10,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Custom CSS -->
     <link href="{% static 'dashboardcss/style.css' %}" rel="stylesheet"/>
-  
+      <style>
+        .profile-card {
+            max-width: 70%;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        @media (max-width: 768px) {
+            .profile-card {
+                width: 70% ;  
+                margin: auto;         
+            }
+        }
+        @media (max-width: 480px) {
+            .profile-card {
+                width: 90% ; 
+            }
+        }
+
+        .profile-card img {
+            max-width: 100px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .button-container a,
+        .button-container button {
+            flex: 1 1 100%;
+        }
+
+        @media (min-width: 576px) {
+            .button-container a,
+            .button-container button {
+                flex: 1 1 auto;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Head -->
    <div class="header">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <!-- Logo and Search Bar (left section) -->
+                   <!-- Logo + Greeting -->
                 <a class="navbar-brand d-flex align-items-center" href="/">
-                    <img src="{% static 'logo.png' %}" width="60px" style="margin-right: 20px;"/>
+                    <img src="{% static 'logo.png' %}" width="50px" class="me-2"/>
                     {% if profile %}
-                        <h3>Hello, {{ profile.user }}!</h3>
+                        <h3 class="mb-0">Hello, {{ profile.user }}!</h3>
                     {% endif %}
                 </a>
 
-    
                 <!-- Right section (icons, always visible) -->
                 <div class="d-flex align-items-center">
-                    <!-- Search icon for mobile -->
-                    <a class="nav-link d-lg-none navbox" href="#"><i class="fas fa-search bright"></i></a>
                     <!-- Other icons -->
                     <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Archieve"  href="/dashboard/archieve"><i class="fa-solid fa-box-archive bright"></i></a>
                     <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messages" href="/dashboard/messages"><i class="fab fa-facebook-messenger bright"></i></a>

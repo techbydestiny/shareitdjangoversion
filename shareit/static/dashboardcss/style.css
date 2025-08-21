@@ -1,6 +1,6 @@
 /* Navbar color scheme */
 .navbar {
-    background-color: #76593C;
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .navbar .navbar-brand,
@@ -13,15 +13,20 @@
     font-size: 1.5rem;
 }
 
-.navbar .profile-pic {
+.navbar {
     width: 30px;
     height: 30px;
     border-radius: 50%;
 }
+.profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
 
-/* Hide search bar on mobile */
+/* Hide brand name on mobile */
 @media (max-width: 991px) {
-    .navbar-brand .search-bar {
+    .navbar-brand {
         display: none;
     }
 }
@@ -34,20 +39,12 @@
     filter: brightness(0.2);
 }
 
-.profile-card
-{
-    background-color: #76593C;;
-    width: 50%;
-    align-content: center;
-    align-self: center;
 
-}
-
-    .button-container {
+.button-container {
         display: flex;
         flex-wrap: wrap;
         gap: 10px; /* Space between buttons */
-    }
+}
 
     .button-container button {
         flex: 1 1 calc(20% - 10px); /* Responsive width with gap adjustment */
@@ -117,7 +114,7 @@
 .messages
 {
     overflow: scroll;
-    height: 500px;
+   height: 60%;
 }
 .upload-button:hover .hover-overlay {
     opacity: 1;
@@ -128,4 +125,38 @@
     width: 100px;
     height: 100px;
     object-fit: cover;
+}
+/* Profile Card Styling */
+.profile-card {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 50%; /* Default desktop width */
+    margin: auto;
+}
+
+/* Mobile: make it take 70% */
+@media (max-width: 768px) {
+    .profile-card {
+        width: 70% !important;
+    }
+}
+
+/* Upload hover overlay consistency */
+.hover-overlay {
+    position: absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.4);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    transition:0.3s;
+    border-radius:50%;
+}
+.upload-button:hover .hover-overlay {
+    opacity: 1;
 }

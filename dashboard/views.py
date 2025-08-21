@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.sites.shortcuts import get_current_site
 from .models import UserInfos, Messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -44,18 +45,31 @@ def authenticator(request, uidb64, token):
 
 @login_required(login_url='/login')
 def homePage(request):
-    return render(request, 'home.html')
+       # get current domain dynamically
+    current_site = get_current_site(request)
+    share_link = f"http://{current_site.domain}/{request.user.username}"
 
+    return render(request, 'home.html', {"share_link": share_link})
+
+@login_required(login_url='/login')
 def archievePage(request):
-    return render(request, 'archieve.html')
+    cutoff_date = timezone.now().date() - timedelta(days=5)
+    savedUserMessages = Messages.objects.filter(user=request.user.username, date__lte=cutoff_date)
+    # get current domain dynamically
+    current_site = get_current_site(request)
+    share_link = f"http://{current_site.domain}/{request.user.username}"
+    return render(request, 'archieve.html', {"savedmessages": savedUserMessages , "share_link": share_link})
 
 @login_required(login_url='/login')
 def messagesPage(request):
 
     cutoff_date = timezone.now().date() - timedelta(days=5)
     userMessages = Messages.objects.filter(user=request.user.username, date__gte=cutoff_date)
+    # get current domain dynamically
+    current_site = get_current_site(request)
+    share_link = f"http://{current_site.domain}/{request.user.username}"
 
-    return render(request, 'messages.html', {"usermessages": userMessages})
+    return render(request, 'messages.html', {"usermessages": userMessages, "share_link": share_link})
 
 @login_required(login_url='/login')
 def settingsPage(request):
