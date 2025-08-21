@@ -159,7 +159,7 @@
    Profile Card
 ------------------------------ */
 .profile-card {
-    background: rgba(0, 0, 0, 0.6);
+    background: #392707;
     border-radius: 15px;
     padding: 30px;
     max-width: 500px;
@@ -176,5 +176,6 @@
         @media (max-width: 480px) {
             .profile-card {
                 width: 90% ; 
+                padding: 0;
             }
         }
