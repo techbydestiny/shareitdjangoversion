@@ -178,4 +178,7 @@
                 width: 90% ; 
                 padding: 0;
             }
+            .container-fluid h3{
+                display: none;
+            }
         }

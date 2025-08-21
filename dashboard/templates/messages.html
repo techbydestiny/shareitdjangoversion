@@ -73,8 +73,7 @@
         <a class="navbar-brand d-flex align-items-center flex-wrap" href="/">
           <img src="{% static 'logo.png' %}" class="me-2 img-fluid" style="max-width:50px; height:auto;" alt="Logo"/>
           {% if profile %}
-            <h4 class="mb-0 d-none d-sm-block text-white">Hello, {{ profile.user }}!</h4>
-            <span class="mb-0 d-block d-sm-none small text-white">Hi, {{ profile.user }}!</span>
+            <h3 class="mb-0 d-none d-sm-block text-white">Hello, {{ profile.user }}!</h3>
           {% endif %}
         </a>
 
