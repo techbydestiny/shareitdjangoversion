@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from .models import UserInfos
-from django.contrib.auth import authenticate,login,logout
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import UserInfos, Messages
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
@@ -13,6 +12,9 @@ from urllib.parse import urlencode
 from django.contrib.auth import get_user_model
 from django.utils.encoding import force_str 
 from django.utils.http import urlsafe_base64_decode
+from django.contrib.auth.hashers import check_password
+from django.utils import timezone
+from datetime import timedelta
 
 # Create your views here.
 
@@ -40,14 +42,20 @@ def authenticator(request, uidb64, token):
 
     return render(request, 'auth/password.html', {"message": "Invalid or expired link."})
 
+@login_required(login_url='/login')
 def homePage(request):
     return render(request, 'home.html')
 
 def archievePage(request):
     return render(request, 'archieve.html')
 
+@login_required(login_url='/login')
 def messagesPage(request):
-    return render(request, 'messages.html')
+
+    cutoff_date = timezone.now().date() - timedelta(days=5)
+    userMessages = Messages.objects.filter(user=request.user.username, date__gte=cutoff_date)
+
+    return render(request, 'messages.html', {"usermessages": userMessages})
 
 @login_required(login_url='/login')
 def settingsPage(request):
@@ -62,13 +70,18 @@ def settingsPage(request):
 def authEmail(request):
     if request.method == "POST":
         newEmail = request.POST.get('email')
-          # Check if email exists
-        if User.objects.filter(email=newEmail).exists():
-            return render(request, "signup.html", {"error": "Email already taken."})
-        
-        obj = User.objects.get(id = request.user.id)
-        obj.email = newEmail
-        obj.save()
+        password = request.POST.get('password')
+        # Check if password is correct
+        if check_password(password, request.user.password):
+            # Check if email exists
+            if User.objects.filter(email=newEmail).exists():
+                return render(request, "auth/email.html", {"error": "Email already taken."})
+            
+            obj = User.objects.get(id = request.user.id)
+            obj.email = newEmail
+            obj.save()
+        else:
+            return render(request, "auth/email.html", {"error": "Password Is Incorrect."})
 
         return render(request, 'auth/email.html', {"message": "New Email Saved! "})
     
@@ -78,13 +91,19 @@ def authEmail(request):
 def authUser(request):
     if request.method == "POST":
         newUname = request.POST.get('username')
-          # Check if username exists
-        if User.objects.filter(username=newUname).exists():
-            return render(request, "signup.html", {"error": "Username already taken."})
-        obj = User.objects.get(id = request.user.id)
-        obj.username = newUname
-        obj.save()
-        return render(request, 'auth/user.html', {"message": "New Username Saved! "})
+        password = request.POST.get('password')
+        # Check if password is correct
+        if check_password(password, request.user.password):
+            # Check if username exists
+            if User.objects.filter(username=newUname).exists():
+                return render(request, "auth/user.html", {"error": "Username already taken."})
+            obj = User.objects.get(id = request.user.id)
+            obj.username = newUname
+            obj.save()
+            return render(request, 'auth/user.html', {"message": "New Username Saved! "})
+        else:
+           return render(request, "auth/user.html", {"error": "Password Is Incorrect"})
+
 
     return render(request, 'auth/user.html')
 
@@ -116,6 +135,26 @@ def authPassword(request):
         return render(request, 'auth/password.html', {"message": "Check your email to confirm password change."})
 
     return render(request, 'auth/password.html')
+
+ 
+
+def user_screen(request, username):
+    user = get_object_or_404(User, username=username)
+    if request.method == "POST":
+        message = request.POST.get('message')
+        Messages.objects.create(message=message, user=username)
+        return render(request,"screen.html", {"user": user, "messages": "Your message has been sent!"} )
+    return render(request, "screen.html", {"user": user})
+
+
+
+@login_required(login_url='/login')
+def delete_message(request, message_id):
+    message = get_object_or_404(Messages, id=message_id)
+
+    message.delete()
+
+    return redirect('messagesPage')
 
 def signout(request):
     logout(request)

@@ -8,7 +8,7 @@ class Messages(models.Model):
     message = models.TextField()
     date = models.DateField(default=timezone.now)
     reported = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.CharField(max_length=150)
 
     def __str__(self):
         return  self.message[:50] 

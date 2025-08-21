@@ -33,7 +33,7 @@
                     <!-- Other icons -->
                     <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Archieve"  href="/dashboard/archieve"><i class="fa-solid fa-box-archive bright"></i></a>
                     <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messages" href="/dashboard/messages"><i class="fab fa-facebook-messenger bright"></i></a>
-                    <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Messages" href="/dashboard/">
+                    <a class="nav-link navbox" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile" href="/dashboard/">
                         {% if profile.profile_pic %}
                             <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile" src="{{ profile.profile_pic.url }}" alt="Profile" class="profile-pic ms-2 bright">
                         {%else%}
@@ -46,7 +46,7 @@
     </div>
 
 
-    <div class="body" style="background-image: url(&quot;{% static 'login-hero.jpg' %}&quot;);">
+    <div class="body" style="background-image: url(&quot;{% static 'images/login-hero.jpg' %}&quot;);">
 
         <div class="container-fluid">
 
@@ -58,66 +58,25 @@
                     </div>
                     <hr/>
                     <div class="messages">
-                        <div class="card justified" style="width: 70%;">
-                            <div class="card-header">Message:</div>
-                            <div class="card-body">
-                                <p>I like the fact that your are not here</p>
-                                <p>- Anonymous [20-10-2024 23:25 GMT]</p>
+                       {% for msg in usermessages %}
+                            <div class="card justified" style="width: 70%; margin-bottom: 20px;">
+                                <div class="card-header">Message:</div>
+                                <div class="card-body">
+                                    <p>{{ msg.message }}</p>
+                                    <p>- Anonymous [{{ msg.date|date:"d-m-Y" }} GMT]</p>
+                                </div>
+                                <div class="card-footer d-flex">
+                                    <button class="btn btn-custom2"> Share <i class="fa-solid fa-share"></i></button>
+                                    <form method="POST" action="{% url 'delete_message' msg.id %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-custom2" type="submit"> Report <i class="fa-solid fa-flag"></i></button>
+                                        <button class="btn btn-custom2" type="submit"> Delete <i class="fa-solid fa-trash-can"></i></button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="card-footer">
-                               <button class="btn btn-custom2"> Share  <i class="fa-solid fa-share"></i></button>
-                               <button class="btn btn-custom2"> Report <i class="fa-solid fa-flag"></i></button>
-                               <button class="btn btn-custom2"> Save <i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                        <div class="card justified" style="width: 70%;">
-                            <div class="card-header">Message:</div>
-                            <div class="card-body">
-                                <p>I like the fact that your are not here</p>
-                                <p>- Anonymous [20-10-2024 23:25 GMT]</p>
-                            </div>
-                            <div class="card-footer">
-                               <button class="btn btn-custom2"> Share  <i class="fa-solid fa-share"></i></button>
-                               <button class="btn btn-custom2"> Report <i class="fa-solid fa-flag"></i></button>
-                               <button class="btn btn-custom2"> Save <i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                        <div class="card justified" style="width: 70%;">
-                            <div class="card-header">Message:</div>
-                            <div class="card-body">
-                                <p>I like the fact that your are not here</p>
-                                <p>- Anonymous [20-10-2024 23:25 GMT]</p>
-                            </div>
-                            <div class="card-footer">
-                               <button class="btn btn-custom2"> Share  <i class="fa-solid fa-share"></i></button>
-                               <button class="btn btn-custom2"> Report <i class="fa-solid fa-flag"></i></button>
-                               <button class="btn btn-custom2"> Save <i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                        <div class="card justified" style="width: 70%;">
-                            <div class="card-header">Message:</div>
-                            <div class="card-body">
-                                <p>I like the fact that your are not here</p>
-                                <p>- Anonymous [20-10-2024 23:25 GMT]</p>
-                            </div>
-                            <div class="card-footer">
-                               <button class="btn btn-custom2"> Share  <i class="fa-solid fa-share"></i></button>
-                               <button class="btn btn-custom2"> Report <i class="fa-solid fa-flag"></i></button>
-                               <button class="btn btn-custom2"> Save <i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                        <div class="card justified" style="width: 70%;">
-                            <div class="card-header">Message:</div>
-                            <div class="card-body">
-                                <p>I like the fact that your are not here</p>
-                                <p>- Anonymous [20-10-2024 23:25 GMT]</p>
-                            </div>
-                            <div class="card-footer">
-                               <button class="btn btn-custom2"> Share  <i class="fa-solid fa-share"></i></button>
-                               <button class="btn btn-custom2"> Report <i class="fa-solid fa-flag"></i></button>
-                               <button class="btn btn-custom2"> Save <i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>
+                            {% empty %}
+                            <p>No messages yet.</p>
+                            {% endfor %}
                     </div>
                     <div align="center" class="justified">
                         <button class="btn btn-custom centered" onclick="onBack()"><i class="fa-solid fa-backward"></i> Back</button>
