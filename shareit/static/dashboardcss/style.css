@@ -1,27 +1,20 @@
-/* Navbar color scheme */
+/* ------------------------------
+   Navbar Styling
+------------------------------ */
 .navbar {
-    background: rgba(0, 0, 0, 0.7);
+    background: #392707;/* dark semi-transparent navbar */
+    width: 100%;
+    border-radius: 0;
 }
 
 .navbar .navbar-brand,
 .navbar .nav-link,
 .navbar .search-bar {
-    color: #FFFFFF;
+    color: #ffffff; /* white text/icons for contrast */
 }
 
 .navbar .nav-link i {
     font-size: 1.5rem;
-}
-
-.navbar {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-}
-.profile-pic {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
 }
 
 /* Hide brand name on mobile */
@@ -30,56 +23,80 @@
         display: none;
     }
 }
-.navbox{
+
+/* Profile pic in navbar */
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.navbox {
     border-radius: 100%;
     margin-right: 20px;
 }
-.bright:hover
-{
+
+.bright:hover {
     filter: brightness(0.2);
 }
 
-
+/* ------------------------------
+   Buttons Styling
+------------------------------ */
 .button-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px; /* Space between buttons */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between buttons */
 }
 
+.button-container button {
+    flex: 1 1 calc(20% - 10px); /* Responsive width */
+    min-width: 120px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
     .button-container button {
-        flex: 1 1 calc(20% - 10px); /* Responsive width with gap adjustment */
-        min-width: 120px; /* Minimum width for smaller screens */
-        text-align: center;
+        flex: 1 1 45%; /* 2 per row on tablets */
     }
-
-    @media (max-width: 768px) {
-        .button-container button {
-            flex: 1 1 45%; /* Adjusts to 2 buttons per row on smaller screens */
-        }
-    }
-
-    @media (max-width: 480px) {
-        .button-container button {
-            flex: 1 1 100%; /* Stacks buttons on very small screens */
-        }
-    }
-.link-action
-{
-    text-decoration: none;
-    color: whitesmoke;
 }
-.link-action:hover {
-    text-decoration: underline;
+
+@media (max-width: 480px) {
+    .button-container button {
+        flex: 1 1 100%; /* stack on mobile */
+    }
 }
+
+/* Custom buttons */
 .btn-custom {
     background-color: #91763B;
+    color: #fff;
 }
 
 .btn-custom:hover {
     background-color: #7b6531;
 }
-.body
-{
+
+.btn-custom2 {
+    border-color: #91763B;
+}
+
+/* ------------------------------
+   Links
+------------------------------ */
+.link-action {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.link-action:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------
+   Layout & Containers
+------------------------------ */
+.body {
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -87,35 +104,29 @@
     filter: brightness(0.8);
 }
 
-.archieve-card
-{
-    margin-top: none;
-    background-color: #76593C;;
+/* Archive card */
+.archieve-card {
+    background-color: #76593C;
     width: 90%;
+    margin: 0 auto;
     align-content: center;
     align-self: center;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
 }
-.btn-custom2
-{
-    border-color: #91763B;
-}
-.justified
-{
-    margin-top: 20px;
-    margin-bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
 
+/* Justified sections */
+.justified {
+    margin: 20px auto 0 auto;
 }
-.messages
-{
+
+/* Messages container */
+.messages {
     overflow: scroll;
-   height: 60%;
+    height: 60%;
 }
+
+/* ------------------------------
+   Upload/Profile
+------------------------------ */
 .upload-button:hover .hover-overlay {
     opacity: 1;
 }
@@ -126,13 +137,33 @@
     height: 100px;
     object-fit: cover;
 }
-/* Profile Card Styling */
+
+/* Upload hover overlay consistency */
+.hover-overlay {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+/* ------------------------------
+   Profile Card
+------------------------------ */
 .profile-card {
     background: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
     padding: 30px;
     max-width: 500px;
-    width: 50%; /* Default desktop width */
+    width: 50%; /* default desktop */
     margin: auto;
 }
 
@@ -141,22 +172,4 @@
     .profile-card {
         width: 70% !important;
     }
-}
-
-/* Upload hover overlay consistency */
-.hover-overlay {
-    position: absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    background: rgba(0,0,0,0.4);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    opacity:0;
-    transition:0.3s;
-    border-radius:50%;
-}
-.upload-button:hover .hover-overlay {
-    opacity: 1;
 }
