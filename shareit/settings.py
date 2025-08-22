@@ -136,8 +136,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# remove STATICFILES_DIRS unless you truly have a global static folder outside apps
-# STATICFILES_DIRS = [BASE_DIR / "shareit" / "static"]
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
