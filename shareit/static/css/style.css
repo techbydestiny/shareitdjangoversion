@@ -45,6 +45,31 @@ body{ margin:0; }
   text-align: center;
   height: auto;
 }
+/* Hero section background */
+.hero-img {
+  background: no-repeat center center/cover;
+  min-height: 100vh;       /* full screen */
+  padding-top: 80px;       /* push below fixed navbar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+}
+
+/* Adjust padding for smaller screens (navbar taller on mobile) */
+@media (max-width: 992px) {
+  .hero-img {
+    padding-top: 120px;
+  }
+}
+
+/* Buttons */
+.hero-img .btn {
+  margin-top: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
 
 .hero-overlay {
   position: absolute;
