@@ -135,7 +135,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "shareit" / "static"]
+
+# remove STATICFILES_DIRS unless you truly have a global static folder outside apps
+# STATICFILES_DIRS = [BASE_DIR / "shareit" / "static"]
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
