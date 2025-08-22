@@ -2,7 +2,7 @@
    Navbar Styling
 ------------------------------ */
 .navbar {
-    background: #392707;/* dark semi-transparent navbar */
+    background: #392707; /* dark semi-transparent navbar */
     width: 100%;
     border-radius: 0;
 }
@@ -47,23 +47,29 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px; /* Space between buttons */
+    justify-content: center;
 }
 
+.button-container a,
 .button-container button {
-    flex: 1 1 calc(20% - 10px); /* Responsive width */
+    flex: 1 1 calc(20% - 10px);
     min-width: 120px;
     text-align: center;
 }
 
+/* Tablet */
 @media (max-width: 768px) {
+    .button-container a,
     .button-container button {
-        flex: 1 1 45%; /* 2 per row on tablets */
+        flex: 1 1 45%; /* 2 per row */
     }
 }
 
+/* Mobile */
 @media (max-width: 480px) {
+    .button-container a,
     .button-container button {
-        flex: 1 1 100%; /* stack on mobile */
+        flex: 1 1 100%; /* full width stacked */
     }
 }
 
@@ -161,24 +167,27 @@
 .profile-card {
     background: #392707;
     border-radius: 15px;
-    padding: 30px;
     max-width: 500px;
-    width: 50%; /* default desktop */
+    width: 50%; /* desktop */
     margin: auto;
 }
 
-   @media (max-width: 768px) {
-            .profile-card {
-                width: 70% ;  
-                margin: auto;         
-            }
-        }
-        @media (max-width: 480px) {
-            .profile-card {
-                width: 90% ; 
-                padding: 0;
-            }
-            .container-fluid h3{
-                display: none;
-            }
-        }
+/* Tablet view */
+@media (max-width: 768px) {
+    .profile-card {
+        width: 70%;
+        margin: auto;
+    }
+}
+
+/* Mobile view */
+@media (max-width: 480px) {
+    .profile-card {
+        width: 95%;   /* not full edge-to-edge */
+        margin: auto; /* center */
+        padding: 10px;
+    }
+    .container-fluid h3 {
+        display: none; /* hide greeting on very small screens */
+    }
+}
